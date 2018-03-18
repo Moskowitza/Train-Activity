@@ -1,49 +1,59 @@
-// Link to our Firebase:
+// Link to our Firebase: This is right!
 var config = {
-  apiKey: "AIzaSyAhhFXOI9Zb4ulqhQg2T1b5XIlgRt0P78Q",
-  authDomain: "employees-8798f.firebaseapp.com",
-  databaseURL: "https://employees-8798f.firebaseio.com",
-  projectId: "employees-8798f",
-  storageBucket: "",
-  messagingSenderId: "799081197880"
-};
-firebase.initializeApp(config);
+    apiKey: "AIzaSyBFItteSwAii_eYcCtGk2tITKwpUGMQqbw",
+    authDomain: "trains-230d3.firebaseapp.com",
+    databaseURL: "https://trains-230d3.firebaseio.com",
+    projectId: "trains-230d3",
+    storageBucket: "trains-230d3.appspot.com",
+    messagingSenderId: "362734551936"
+  };
+  firebase.initializeApp(config);
+
 var database = firebase.database();
+//declare variables
+var name = "Train Name Alpha"; //send to firebase
+var destination = "Destination Alpha"; //send to firebase
+var firstTrain =  "03:30"; //send to firebase
+var firstTimeFormat="hh:mm" //CHECK ON THIS = for momentjs
+var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+console.log(firstTimeConverted);
+var frequency = 10; //send to firebase
+var frequencyFormat = "minutes"; // //CHECK ON THIS = for momentjs
+var nextArrival= "00:00" ; //CHECK ON THIS =send to the DOM
+var minutesAway= "00:00"; //CHECK ON THIS =send to the DOM
+var currentTime=moment(); //for calculations
 
-var name = "";
-var position = "";
-var startDate = "09/01/2017";
-var startFormat = "MM/DD/YYYY";
-var startMoment = moment(startDate, startFormat);
-console.log(moment().diff(moment(startMoment), "months"));// returns POSITIVE number
-var monthlyRate = 100;
-var totalBilled = "";
+// Difference between the times
+var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+console.log("DIFFERENCE IN TIME: " + diffTime);
 
+//Submit button, send data to Firebase
 $("#submit").on("click", function (event) {
   event.preventDefault();
-  console.log("hi");
+  console.log("We're sending data to Firebase");
+  //trim and validate data here, before it's sent to firebase
   name = $("#name").val().trim();
-  position = $("#position").val().trim();
-  startDate = $("#startDate").val().trim();
-  monthlyRate = $("#monthlyRate").val().trim();
+  destination = $("#destination").val().trim();
+  fristTrain = $("#firstTrain").val().trim();
+  frequency = $("#frequency").val().trim();
 
   database.ref().push({
-    name: name,
-    position: position,
-    startDate: startDate,
-    monthlyRate: monthlyRate
+    name = name,
+    destination = destination,
+    fristTrain = firstTrain,
+    frequency = frequency
   });
 });
 
 
 // let's fill in a table!!!
-
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (childsnapshot) {
 
   var tRow = $("<tr>");
   var tBody = $("tbody");
   // tBody.empty(); //remove this to get list of all new values
-  // Calculate Months Worked
+  // Calculate Next Arrival and Minues Away
+  //nex arrival = lasttraintime-currenttime
   var startDate = childsnapshot.val().startDate;
   console.log(startDate); //does get last date, but as YYYY/MM/DD 
   var startMoment = moment(startDate).format("MM/DD/YYYY");
@@ -63,12 +73,11 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
 
   var nameTd = $("<td>").text(childsnapshot.val().name);//from database
-  var positionTd = $("<td>").text(childsnapshot.val().position);//from database
-  var startDateTd = $("<td>").text(childsnapshot.val().startDate);//from database
-  var monthsWorkedTd = $("<td>").text(monthsDiffernce); //calculated value
-  var monthlyRateTd = $("<td>").text("$" + childsnapshot.val().monthlyRate); //from database
-  var totalTd = $("<td>").text("$" + total);//calculated value
-  tRow.append(nameTd, positionTd, startDateTd, monthsWorkedTd, monthlyRateTd, totalTd);
+  var destinationTd = $("<td>").text(childsnapshot.val().destination);//from database
+  var frequencyTd = $("<td>").text(childsnapshot.val().frequency);//from database
+  var nextArrivalTd = $("<td>").text(monthsDiffernce); //calculated value
+  var minutesAwayTd = $("<td>").text("$" + childsnapshot.val().monthlyRate); //from database
+  tRow.append(nameTd, destinationTd, frequencyTd, nextArrivalTd, minutesAwayTd);
   console.log(tRow);
   tBody.append(tRow);
 })

@@ -19,11 +19,12 @@
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h1> Employee Data Management</h1>
+      <h1> Anytime is Train Time</h1>
+      <h2>All Aboard!</h2>
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading panel-primary">
-        <h3>current employees</h3>
+        <h3>Current Train Schedule</h3>
       </div>
       <div class="panel-body">
         <table class="table table-bordered">
@@ -44,15 +45,15 @@
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3>Add Employee</h3>
+        <h3>Add Train</h3>
       </div>
       <div class="panel-body">
         <form>
           <div class="form-group">
             <input id="name" type="text" name="name" placeholder="Train Name" />
             <input id="destination" type="text" name="destination" placeholder="Destination" />
-            <input id="firstTrain" type="date" name="firstTrain" placeholder="First Train Time (HH:mm -military time" />
-            <input id="frequency" type="text" name="frequency" placeholder="Frequency (min)" />
+            <input id="firstTrain" type="time" name="firstTrain" placeholder="First Train Time (HH:mm -military time" />
+            <input id="frequency" type="number" name="frequency" placeholder="Frequency (min)" />
             <button class="btn btn-primary" id="submit">Submit</button>
           </div>
 
