@@ -1,104 +1,66 @@
-# Firebase Assignment - Train Scheduler (Basic - Recommended)
-
-##### _Because that Rock Paper Scissors Game is Too Damn Hard_
-
-### Overview
-
-In this assignment, you'll create a train schedule application that incorporates Firebase to host arrival and departure data. Your app will retrieve and manipulate this information with Moment.js. This website will provide up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station.
-
-- - -
-
-### Setup
-
-* We'll leave that up to you -- however you like. Just make sure you're using Firebase to store data, GitHub to backup your project, and GithHub Pages to host your finished site.
-
-### Instructions
+<!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Train Scheduling</title>
-    </head>
-    <body>
-        <div class="container">
-                <form>
-                        <div class="form-group">
-          
-    
-    
-    
-<!--     * Train Name -->
-                        <label for="train-name">Your Name</label>
-                          <input class="form-control" id="train-name" type="text">
-                        </div>
-                        <!-- * Destination  -->
 
-                        <div class="form-group">
-                          <label for="desitnation">Your Price</label>
-                          <input class="form-control" id="destination" type="number">
-                        </div>
-                        <!-- * First Train Time -- in military time -->
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <!-- FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- MOMENT -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- OUR STYLESHEET -->
+  <link rel="stylesheet" href="assets/style/style.css">
+</head>
 
-                        <div class="form-group">
-                                <label for="desitnation">Your Price</label>
-                                <input class="form-control" id="destination" type="number">
-                              </div>
-                                  <!-- * Frequency -- in minutes          -->
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1> Employee Data Management</h1>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-primary">
+        <h3>current employees</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Frequency</th>
+              <th>Next Arrival</th>
+              <th>Minute Away</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Insert Train rows here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3>Add Employee</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <input id="name" type="text" name="name" placeholder="Train Name" />
+            <input id="destination" type="text" name="destination" placeholder="Destination" />
+            <input id="firstTrain" type="date" name="firstTrain" placeholder="First Train Time (HH:mm -military time" />
+            <input id="frequency" type="text" name="frequency" placeholder="Frequency (min)" />
+            <button class="btn btn-primary" id="submit">Submit</button>
+          </div>
 
-                              <div class="form-group">
-                                    <label for="frequency">Your Price</label>
-                                    <input class="form-control" id="frequency" type="number">
-                                  </div>
-                        <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
-                      </form>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="assets/javascript/train.js"></script>
+</body>
 
-        </div>
-
-    </body>
 </html>
-* Make sure that your app suits this basic spec:
-  
-  * When adding trains, administrators should be able to submit the following:
-    
-  
-    * Train Name
-    
-    * Destination 
-    
-    * First Train Time -- in military time
-    
-    * Frequency -- in minutes
-  
-  * Code this app to calculate when the next train will arrive; this should be relative to the current time.
-  
-  * Users from many different machines must be able to view same train times.
-  
-  * Styling and theme are completely up to you. Get Creative!
-
-### Example Site
-
-![train homework](Train_Time_Image.png)
-
-### Bonus (Extra Challenges)
-
-* Consider updating your "minutes to arrival" and "next train time" text once every minute. This is significantly more challenging; only attempt this if you've completed the actual activity and committed it somewhere on GitHub for safekeeping (and maybe create a second GitHub repo).
-
-* Try adding `update` and `remove` buttons for each train. Let the user edit the row's elements-- allow them to change a train's Name, Destination and Arrival Time (and then, by relation, minutes to arrival).
-
-* As a final challenge, make it so that only users who log into the site with their Google or GitHub accounts can use your site. You'll need to read up on Firebase authentication for this bonus exercise.
-
-- - -
-
-### Minimum Requirements
-
-Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed.
-
-- - -
-
-### Create a README.md
-
-Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
-
-* [About READMEs](https://help.github.com/articles/about-readmes/)
-
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-
-
