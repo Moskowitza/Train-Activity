@@ -37,7 +37,7 @@
               <th>Minute Away</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="schedule">
             <!-- Insert Train rows here -->
           </tbody>
         </table>
@@ -48,18 +48,30 @@
         <h3>Add Train</h3>
       </div>
       <div class="panel-body">
-        <form>
-          <div class="form-group">
-            <input id="name" type="text" name="name" placeholder="Train Name" />
-            <input id="destination" type="text" name="destination" placeholder="Destination" />
-            <input id="firstTrain" type="time" name="firstTrain" placeholder="First Train Time (HH:mm -military time" />
-            <input id="frequency" type="number" name="frequency" placeholder="Frequency (min)" />
-            <button class="btn btn-primary" id="submit">Submit</button>
-          </div>
 
-        </form>
+          <table class="table table-bordered">
+          <thead>
+            <th>Train Name</th>
+            <th>Destination</th>
+            <th>First Train Time</th>
+            <th>Frequency</th>
+          </thead>
+          <tbody>
+            <form>
+              <th><input id="name" type="text" name="name" placeholder= "Train Name" /></th>
+              <th><input id="destination" type="text" name="destination" placeholder="Destination" /></th>
+              <th><input id="firstTime" type="text" name="firstTime" placeholder= "12:30∆" /></th>
+              <th><input id="tFrequency" type="number" name="tFrequency" placeholder= "Frequency (min)" /></th>
+            </form>
+          </tbody>
+        </table>
+        <button class="btn btn-primary" id="submit">Submit</button>
+
       </div>
+
+      </form>
     </div>
+  </div>
   </div>
   <script src="assets/javascript/train.js"></script>
 </body>
