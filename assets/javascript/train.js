@@ -47,31 +47,33 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTime=childsnapshot.val().firstTime; 
     var timeFormat = "HH:mm"
-    var firstTimeConverted = moment(firstTime, timeFormat).subtract(1, "Day"); //This is "date math"
-    console.log(firstTimeConverted);
+    var firstTimeConverted = moment(firstTime, timeFormat).subtract(1, "year"); //This is "date math"
+    console.log(firstTimeConverted); //an object
 
     var tFrequencyFormat = "minutes"; // //CHECK ON THIS = for momentjs
 
-
     // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format(timeFormat));
+    var currentTime = moment(); 
+    console.log("CURRENT TIME: " + moment(currentTime).format(timeFormat)); //works 
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
-
+    console.log("DIFFERENCE IN TIME: " + diffTime); //returns a number of minutes as string object
+    console.log(("type of diffTime " + typeof diffTime))//it's a number
     // Time apart (remainder)
     var tRemainder = diffTime % tFrequency;
-    console.log(tRemainder);
+    console.log(tRemainder); //this is also a number
 
     // Minute Until Train
     var tMinutesTillTrain = tFrequency - tRemainder;
     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    console.log(typeof tMinutesTillTrain);
 
     // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "hh:mm");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+    var nextTrain= moment().add(tMinutesTillTrain, "minutes");
+    var nextTrainTime= moment(nextTrain).format("hh:mm");
+    // var nextTrain = moment().add(tMinutesTillTrain);
+    console.log("ARRIVAL TIME: " + nextTrainTime); //this doesn't seem to work
   
 
 
@@ -83,7 +85,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
   var tFrequencyTd = $("<td>").text(childsnapshot.val().tFrequency);//from database
 
 
-  var nextTrainTd = $("<td>").text(nextTrain); //calculated above
+  var nextTrainTd = $("<td>").text(nextTrainTime); //calculated above
   var tMinutesTillTrainTd = $("<td>").text(tMinutesTillTrain); //calculated above
   tRow.append(nameTd, destinationTd, tFrequencyTd, nextTrainTd, tMinutesTillTrainTd);
   console.log(tRow);
