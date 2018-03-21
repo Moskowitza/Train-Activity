@@ -71,7 +71,7 @@ database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functi
 
     // Next Train
     var nextTrain= moment().add(tMinutesTillTrain, "minutes");
-    var nextTrainTime= moment(nextTrain).format("hh:mm");
+    var nextTrainTime= moment(nextTrain).format("HH:mm");
     // var nextTrain = moment().add(tMinutesTillTrain);
     console.log("ARRIVAL TIME: " + nextTrainTime); //this doesn't seem to work
   
